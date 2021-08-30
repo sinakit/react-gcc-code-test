@@ -1,9 +1,9 @@
-import * as React from "react";
+import * as React from 'react';
 
-import TodoProvider from "./context/todoContext";
-import Todos from "./containers/Todos";
-import AddTodo from "./components/AddTodo";
-import "./styles.css";
+import TodoProvider from './context/todoContext';
+import Todos from './containers/Todos';
+import AddTodo from './components/AddTodo';
+import './styles.css';
 
 export default function App() {
   return (
@@ -16,4 +16,3 @@ export default function App() {
     </TodoProvider>
   );
 }
-// My blog: https://www.ibrahima-ndaw.com/
