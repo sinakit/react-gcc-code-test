@@ -19,7 +19,6 @@ const AddTodo: React.FC = () => {
   const handleSaveTodo = (e: React.FormEvent, formData: ITodo | any) => {
     e.preventDefault();
     const existTitle = todos.find((v) => v.title === formData?.title);
-    console.log("exist title:", existTitle);
     if (existTitle) {
       alert("Title already exist");
       setFormData({});
@@ -47,7 +46,7 @@ const AddTodo: React.FC = () => {
             type="text"
             id="title"
             value={formData?.title || selectedTodo?.title || ""}
-            pattern="^(?=[A-Za-z0-9])([A-Za-z0-9\s]*)(?<=[A-Za-z0-9])$"
+            pattern="^(?!\s*$).+"
           />
         </div>
       </div>
