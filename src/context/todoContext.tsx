@@ -8,19 +8,25 @@ const TodoProvider: React.FC<React.ReactNode> = ({ children }) => {
     {
       id: 1,
       title: "task 1",
+      status: false,
     },
     {
       id: 2,
       title: "task 2",
+      status: false,
     }
   ]);
+
+  const [searchTitle, setSearchTitle] = React.useState('');
 
   const saveTodo = (todo: ITodo) => {
     const newTodo: ITodo = {
       id: Math.random(), // not really unique - but fine for this example
       title: todo.title,
+      status: false
     };
     setTodos([...todos, newTodo]);
+    setSearchTitle('');
   };
 
   const updateTodo = (id: number, data: ITodo) => {
@@ -45,8 +51,19 @@ const TodoProvider: React.FC<React.ReactNode> = ({ children }) => {
     setTodos([...todos]);
   };
 
+  const searchTodo = (title: string) => {
+    console.log('title to search:', title);
+    setSearchTitle(title);
+  };
+
+  const completeTodo = (id: number) => {
+    const ind = todos.findIndex(todo => todo.id === id);
+    todos[ind].status = true;
+    setTodos([...todos]);
+  };
+
   return (
-    <TodoContext.Provider value={{ todos, saveTodo, updateTodo, selectedTodo, findTodo, setSelectedTodo, removeTodo }}>
+    <TodoContext.Provider value={{ todos, saveTodo, updateTodo, selectedTodo, findTodo, setSelectedTodo, removeTodo, searchTodo, searchTitle, setSearchTitle, completeTodo }}>
       {children}
     </TodoContext.Provider>
   );

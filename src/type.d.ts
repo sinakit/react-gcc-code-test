@@ -1,6 +1,7 @@
 interface ITodo {
   id: number;
   title: string;
+  status: boolean
 }
 
 type ContextType = {
@@ -10,5 +11,9 @@ type ContextType = {
   updateTodo: (id: number, data: ITodo) => void;
   findTodo: (id: number) => void;
   removeTodo: (id: number) => void;
-  setSelectedTodo
+  searchTodo: (title: string) => void;
+  completeTodo: (id: number) => void;
+  setSelectedTodo,
+  setSearchTitle,
+  searchTitle: string
 };

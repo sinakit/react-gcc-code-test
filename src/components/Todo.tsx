@@ -5,13 +5,15 @@ type Props = {
   updateTodo: (id: number, data: ITodo) => void;
   findTodo: (id: number) => void;
   removeTodo: (id: number) => void;
+  completeTodo: (id: number) => void;
+  status: boolean
 };
 
-const Todo: React.FC<Props> = ({ todo, findTodo, removeTodo }) => {
+const Todo: React.FC<Props> = ({ todo, findTodo, removeTodo, completeTodo, status }) => {
   return (
     <div className="Card mydivouter">
       <div className="Card--text">
-        <h1>{todo.title}</h1>
+        <h1 onDoubleClick={()=> alert('double click')} className={status? "line-through":""}>{todo.title}</h1>
       </div>
       <div className="mybuttonoverlap btn btn-info">
         <button
@@ -26,6 +28,12 @@ const Todo: React.FC<Props> = ({ todo, findTodo, removeTodo }) => {
           className="Card--button-remove"
         >
           Remove
+        </button>
+        <button
+          onClick={() => completeTodo(todo?.id)}
+          className="Card--button-remove"
+        >
+          Complete
         </button>
       </div>
     </div>
